@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Member - FitZone</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+    <h1>FITZONE GYM</h1>
+    <nav>
+        <a href="/">Dashboard</a>
+        <a href="/members">Members</a>
+        <a href="/members/new">Add Member</a>
+    <form class="logout-form" th:action="@{/logout}" method="post"><button class="logout-btn" type="submit">Logout</button></form>
+    </nav>
+</header>
+
+<main>
+    <section class="form-box">
+        <h2>Add New Member</h2>
+        <form action="/members/save" method="post">
+            <label>Full Name</label>
+            <input type="text" name="name" placeholder="Enter member name" required>
+
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Enter email" required>
+
+            <label>Phone</label>
+            <input type="text" name="phone" placeholder="Enter phone number" required>
+
+            <label>Membership Plan</label>
+            <select name="plan" required>
+                <option value="">Select plan</option>
+                <option>Monthly</option>
+                <option>Quarterly</option>
+                <option>Yearly</option>
+            </select>
+
+            <label>Join Date</label>
+            <input type="date" name="joinDate" required>
+
+            <label>Fees Status</label>
+            <select name="feesStatus" required>
+                <option value="">Select fee status</option>
+                <option value="Paid">Paid</option>
+                <option value="Due">Due</option>
+            </select>
+
+            <label>Training Goal</label>
+            <select name="trainingType" required>
+                <option value="">Select training goal</option>
+                <option value="Strength Training">Strength Training</option>
+                <option value="Fat Loss">Fat Loss</option>
+            </select>
+
+            <button class="btn" type="submit">Save Member</button>
+            <a class="cancel" href="/members">Cancel</a>
+        </form>
+    </section>
+</main>
+</body>
+</html>

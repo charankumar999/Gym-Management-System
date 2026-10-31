@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Login | FitZone Gym</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body class="login-page">
+    <main class="login-card">
+        <div class="login-mark">FG</div>
+        <h1>FITZONE GYM</h1>
+        <p class="login-subtitle">Administrator sign in</p>
+        <div class="login-message error" th:if="${param.error}">Incorrect username or password.</div>
+        <div class="login-message success" th:if="${param.logout}">You have been logged out.</div>
+        <form th:action="@{/login}" method="post">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" autocomplete="username" placeholder="Enter admin username" required autofocus>
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter password" required>
+            <button class="btn login-btn" type="submit">Login securely</button>
+        </form>
+        <p class="login-footnote">Admin access only</p>
+    </main>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Members - FitZone</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+    <h1>FITZONE GYM</h1>
+    <nav>
+        <a href="/">Dashboard</a>
+        <a href="/members">Members</a>
+        <a href="/members/new">Add Member</a>
+    <form class="logout-form" th:action="@{/logout}" method="post"><button class="logout-btn" type="submit">Logout</button></form>
+    </nav>
+</header>
+
+<main>
+    <div class="page-title">
+        <h2>Gym Members</h2>
+        <a class="btn" href="/members/new">+ Add Member</a>
+    </div>
+
+    <section class="panel">
+        <table>
+            <tr>
+                <th>ID</th><th>Name</th><th>Email</th><th>Phone</th>
+                <th>Plan</th><th>Join Date</th><th>Fees Status</th><th>Training Goal</th><th>Action</th>
+            </tr>
+            <tr th:each="m : ${members}">
+                <td th:text="${m.id}"></td>
+                <td th:text="${m.name}"></td>
+                <td th:text="${m.email}"></td>
+                <td th:text="${m.phone}"></td>
+                <td><span class="badge" th:text="${m.plan}"></span></td>
+                <td th:text="${m.joinDate}"></td>
+                <td><span class="status" th:classappend="${m.feesStatus == 'Paid'} ? ' paid' : ' due'" th:text="${m.feesStatus != null ? m.feesStatus : 'Not set'}"></span></td>
+                <td th:text="${m.trainingType != null ? m.trainingType : 'Not set'}"></td>
+                <td>
+                    <a class="delete" th:href="@{'/members/delete/' + ${m.id}}"
+                       onclick="return confirm('Delete this member?')">Delete</a>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(members)}">
+                <td colspan="9" class="empty">No members yet. Add your first member.</td>
+            </tr>
+        </table>
+    </section>
+</main>
+</body>
+</html>
